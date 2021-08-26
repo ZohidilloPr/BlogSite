@@ -17,6 +17,7 @@ def SignUp_function(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'Welcome New User')
             return redirect('Users:Home')
     form = UserForm
     return render(request, 'register/signUp.html', context={'form': form})
@@ -31,15 +32,17 @@ def SignIn_function(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
+                messages.success(request, f'Good Job {user.username}')
                 return redirect('Users:Home')
-        #     else:
-        #         return messages.error(request, 'Something went to wrong!')
-        # else:
-        #     return messages.error(request, 'Something went to wrong!')
+            else:
+                messages.error(request, 'Something went to wrong!')
+        else:
+            messages.error(request, 'Something went to wrong!')
     forms = AuthenticationForm
     return render(request, 'register/signIn.html', context={'login_form': forms})
 
 
 def SignOut_function(request):
     logout(request)
+    messages.info(request, 'Good Bie :( ')
     return redirect('Blog:Home')

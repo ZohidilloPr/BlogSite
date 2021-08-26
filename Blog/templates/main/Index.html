@@ -12,8 +12,8 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
-
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light px-5">
+{% include '/home/zohidillopr/Desktop/BlogSite/Users/templates/index/messeges.html' %}
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light px-5">
     <div class="container">
       <a class="navbar-brand" href="{% url 'Blog:Home' %}"><b>Django</b>Blog</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">

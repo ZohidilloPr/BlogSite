@@ -12,6 +12,7 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
+{% include 'index/messeges.html' %}
     <nav class="navbar navbar-light bg-light fixed-top">
     <div class="container">
       <a class="navbar-brand" href="{% url 'Users:Home' %}">USER<b class="text-primary">PROFILE</b></a>
