@@ -34,7 +34,7 @@
               <img src="{% static 'img/user.png' %}" alt="mdo" class="rounded-circle" width="32" height="32">
             </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">Add Post</a></li>
+              <li><a class="dropdown-item" href="{% url 'Blog:Add' %}">Add Post</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
               <li><a class="dropdown-item" href="{% url 'Users:Home' %}">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
@@ -52,7 +52,7 @@
   </nav>
 
 
-  <div class="container">
+  <div class="main mx-5">
       {% block content %}
 
 

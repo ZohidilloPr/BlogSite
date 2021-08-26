@@ -32,10 +32,10 @@ def SignIn_function(request):
             if user is not None:
                 login(request, user)
                 return redirect('Users:Home')
-            else:
-                return messages.error(request, 'Something went to wrong!')
-        else:
-            return messages.error(request, 'Something went to wrong!')
+        #     else:
+        #         return messages.error(request, 'Something went to wrong!')
+        # else:
+        #     return messages.error(request, 'Something went to wrong!')
     forms = AuthenticationForm
     return render(request, 'register/signIn.html', context={'login_form': forms})
 

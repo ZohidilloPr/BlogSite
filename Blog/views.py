@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import PostsModel
-from django.views.generic import ListView
+from django.views.generic import ListView, CreateView
 # Create your views here.
 
 
@@ -17,3 +17,13 @@ def Article_function(request, id):
         'id': id,
     }
     return render(request, 'main/Article.html', context)
+
+
+class BlogsCreateView(CreateView):
+    model = PostsModel
+    template_name = 'main/Add_Post.html'
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

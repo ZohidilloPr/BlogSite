@@ -10,7 +10,7 @@
 {% block content %}
 
   <div class="row">
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
     <div class="col-md-7">
 
       <div class="box-element my-3">
@@ -18,17 +18,32 @@
           <div class="card-header ">
             <img src="{% static 'img/user.png' %}" width="30" height="30" class="rounded-circle me-2" alt="Img">
             <span class="fs-5 me-5"><a href="#" class="text-dark">{{ posts.author }}</a></span>
-            <small class="text-end fs-7 ms-5">{{ posts.pub_date }}</small>
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ posts.title }}</h5>
             <p class="card-text">{{ posts.body }}</p>
-            <!-- <a href="#" class="btn btn-primary">Read Full</a> -->
           </div>
         </div>
       </div><!-- box-element end -->
 
     </div><!-- Col-md-7 end -->
-    <div class="col-md-3"></div>
+    <div class="col-md-4">
+      <div class="box-element p-3 mt-4">
+        <table class="table border-primary">
+          <tr>
+            <td>Author</td>
+            <td>{{ posts.author | upper }}</td>
+          </tr>
+          <tr>
+            <td>Title</td>
+            <td>{{ posts.title | upper }}</td>
+          </tr>
+          <tr>
+            <td>Published_Date</td>
+            <td>{{ posts.pub_date }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div><!-- row end -->
 {% endblock content %}
