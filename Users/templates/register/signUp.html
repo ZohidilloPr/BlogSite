@@ -1,0 +1,30 @@
+{% extends 'register/main.html' %}
+{% load bootstrap5 %}
+{% block title %}
+SignUp
+{% endblock title %}
+
+{% block content %}
+<div class="button">
+  <a href="{% url 'Blog:Home' %}" class="btn btn-outline-secondary">Back to Home</a>
+</div>
+<div class="row my-3">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="box-element p-3">
+      <form class="" action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <div class="d-grid gap-2">
+          {% bootstrap_button 'Register' button_type='submit' button_class='btn-outline-primary' size='sm' %}
+        </div>
+        <div class="text-center">
+            <small>Already Have an Account? <code><a href="#">SignIn</a></code></small>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+{% endblock content %}
