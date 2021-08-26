@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from .models import PostsModel
 from django.contrib.auth.models import User
-from django.views.generic import ListView, CreateView
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 # Create your views here.
 
 
@@ -38,6 +39,34 @@ class BlogsCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class BlogsUpdateView(UpdateView, UserPassesTestMixin):
+    model = PostsModel
+    template_name = 'main/Update.html'
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_function(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class BlogsDeleteView(DeleteView, UserPassesTestMixin):
+    model = PostsModel
+    template_name = 'main/Delete.html'
+    success_url = '/'
+
+    def test_function(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
 
 
 class OneUserPostsListView(ListView):

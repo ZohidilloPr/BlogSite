@@ -24,6 +24,8 @@
             <h5 class="card-title">{{ post.title }}</h5>
             <p class="card-text">{{ post.body | truncatechars:150 }}</p>
             <a href="{% url 'Blog:Article' id=post.id %}" class="btn btn-primary">Read Full</a>
+            <span><a href="{% url 'Blog:Update' pk=post.pk %}" class="btn btn-outline-warning ms-2">Edit</a></span>
+            <span><a href="{% url 'Blog:Delete' pk=post.pk %}" class="btn btn-danger ms-2">Delete</a></span>
           </div>
         </div>
       </div><!-- box-element end -->
