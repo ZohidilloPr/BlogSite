@@ -27,3 +27,12 @@ class BlogsCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class OneUserPostsListView(ListView):
+    posts = PostsModel
+    template_name = 'main/onlyOneUserPosts.html'
+    ordering = '-pub_date'
+
+    def get_queryset(self):
+        return PostsModel.objects.filter(author=self.request.user).reverse()

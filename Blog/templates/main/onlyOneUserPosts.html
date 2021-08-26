@@ -1,0 +1,35 @@
+{% extends 'main/Index.html' %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+{% for post in object_list %}
+      <div class="box-element my-3">
+        <div class="card border-info">
+          <div class="card-header ">
+            <img src="{% static 'img/user.png' %}" width="30" height="30" class="rounded-circle me-2" alt="Img">
+            <span class="fs-5 me-5"><a href="#" class="text-dark">{{ post.author }}</a></span>
+            <!-- <small class="text-end fs-7 ms-5">{{ post.pub_date }}</small> -->
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.body | truncatechars:150 }}</p>
+            <a href="{% url 'Blog:Article' id=post.id %}" class="btn btn-primary">Read Full</a>
+          </div>
+        </div>
+      </div><!-- box-element end -->
+{% endfor %}
+    </div><!-- Col-md-7 end -->
+    <div class="col-md-2"></div>
+  </div><!-- row end -->
+</div>
+{% endblock content %}
