@@ -17,7 +17,7 @@
         <div class="card border-info">
           <div class="card-header ">
             <img src="{% static 'img/user.png' %}" width="30" height="30" class="rounded-circle me-2" alt="Img">
-            <span class="fs-5 me-5"><a href="#" class="text-dark">{{ posts.author }}</a></span>
+            <span class="fs-5 me-5"><a href="{% url 'Blog:Posts' posts.author.username %}" class="text-dark">{{ posts.author }}</a></span>
           </div>
           <div class="card-body">
             <h5 class="card-title">{{ posts.title }}</h5>
@@ -32,7 +32,7 @@
         <table class="table border-primary">
           <tr>
             <td>Author</td>
-            <td>{{ posts.author | upper }}</td>
+            <td><a href="{% url 'Blog:Posts' posts.author.username %}" class="text-dark">{{ posts.author | upper }}</a></td>
           </tr>
           <tr>
             <td>Title</td>
