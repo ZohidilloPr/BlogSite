@@ -12,7 +12,7 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
-    
+
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light px-5">
     <div class="container">
       <a class="navbar-brand" href="{% url 'Blog:Home' %}"><b>Django</b>Blog</a>
@@ -34,17 +34,17 @@
               <img src="{% static 'img/user.png' %}" alt="mdo" class="rounded-circle" width="32" height="32">
             </a>
             <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-              <li><a class="dropdown-item" href="#">New project...</a></li>
+              <li><a class="dropdown-item" href="#">Add Post</a></li>
               <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'Users:Home' %}">Profile</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Sign out</a></li>
+              <li><a class="dropdown-item" href="{% url 'Users:SignOut' %}">Sign out</a></li>
             </ul>
           </div>
         {% else %}
           <div class="text-end">
-            <button type="button" class="btn btn-outline-success me-2">Login</button>
-            <button type="button" class="btn btn-warning">Sign-up</button>
+            <a href="{% url 'Users:SignIn' %}" class="btn btn-outline-success me-2">SignIn</a>
+            <a href="{% url 'Users:SignUp' %}" class="btn btn-warning">SignUp</a>
           </div>
         {% endif %}
       </div>

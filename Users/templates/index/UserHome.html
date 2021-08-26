@@ -1,1 +1,18 @@
-{{ user.username }}
+{% extends 'index/index.html' %}
+{% load bootstrap5 %}
+{% block title %}
+PROFILE
+{% endblock title %}
+
+{% block content %}
+<div class="row" style="margin-top: 70px;">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="box-element p-3">
+      {{ user }}
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+
+{% endblock content %}

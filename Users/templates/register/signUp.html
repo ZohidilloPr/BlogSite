@@ -19,7 +19,7 @@ SignUp
           {% bootstrap_button 'Register' button_type='submit' button_class='btn-outline-primary' size='sm' %}
         </div>
         <div class="text-center">
-            <small>Already Have an Account? <code><a href="#">SignIn</a></code></small>
+            <small>Already Have an Account? <code><a href="{% url 'Users:SignIn' %}">SignIn</a></code></small>
         </div>
       </form>
     </div>
