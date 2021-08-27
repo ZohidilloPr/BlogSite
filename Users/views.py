@@ -1,17 +1,25 @@
+from .forms import UserForm, UpdateUser, UpdateProfile
 from django.shortcuts import render, redirect
-from .forms import UserForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from .models import UserProfile
 
 # Create your views here.
 
 
 def Home(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user, created = UserProfile.objects.get_or_create(user=user)
+
     return render(request, 'index/UserHome.html')
 
 
 def SignUp_function(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user, created = UserProfile.objects.get_or_create(user=user)
     if request.method == 'POST':
         form = UserForm(request.POST)
         if form.is_valid():
@@ -24,6 +32,9 @@ def SignUp_function(request):
 
 
 def SignIn_function(request):
+    if request.user.is_authenticated:
+        user = request.user
+        user, created = UserProfile.objects.get_or_create(user=user)
     if request.method == 'POST':
         forms = AuthenticationForm(data=request.POST)
         if forms.is_valid():
@@ -46,3 +57,23 @@ def SignOut_function(request):
     logout(request)
     messages.info(request, 'Good Bie :( ')
     return redirect('Blog:Home')
+
+
+def Settings_function(request):
+    if request.method == 'POST':
+        form_u = UpdateUser(data=request.POST, instance=request.user)
+        form_p = UpdateProfile(request.POST, request.FILES,
+                               instance=request.user.userprofile)
+        if form_u.is_valid() and form_p.is_valid():
+            form_u.save()
+            form_p.save()
+            messages.success(request, 'User UPDATED')
+            return redirect('Users:Home')
+    else:
+        form_u = UpdateUser(instance=(request.user))
+        form_p = UpdateProfile(instance=(request.user.userprofile))
+    context = {
+        'form_u': form_u,
+        'form_p': form_p,
+    }
+    return render(request, 'register/Settings.html', context)

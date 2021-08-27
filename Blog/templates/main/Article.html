@@ -16,7 +16,7 @@
       <div class="box-element my-3">
         <div class="card border-info">
           <div class="card-header ">
-            <img src="{% static 'img/user.png' %}" width="30" height="30" class="rounded-circle me-2" alt="Img">
+            <img src="{{ posts.author.userprofile.image.url }}" width="30" height="30" class="rounded-circle me-2" alt="Img">
             <span class="fs-5 me-5"><a href="{% url 'Blog:Posts' posts.author.username %}" class="text-dark">{{ posts.author }}</a></span>
           </div>
           <div class="card-body">

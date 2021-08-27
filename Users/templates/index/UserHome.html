@@ -9,7 +9,32 @@ PROFILE
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="box-element p-3">
-      {{ user }}
+        <div class="card mb-3" >
+          <div class="row g-0">
+            <div class="col-md-4">
+                <a href="{{ user.userprofile.image.url }}">
+                    <img src="{{ user.userprofile.image.url }}" alt="UserImg" class="img-fluid rounded-circle p-3">
+                </a>
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <table class="table mt-4 table-hover">
+                    <tr>
+                        <td>USERNAME</td>
+                        <td>{{ user.username | upper }}</td>
+                    </tr>
+                    <tr>
+                        <td>EMAIL</td>
+                        <td>{{ user.email }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><a href="{% url 'Users:Settings' %}" class="btn btn-primary btn-sm px-4">Settings</a></td>
+                    </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </div>
   <div class="col-md-3"></div>

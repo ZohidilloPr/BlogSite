@@ -1,4 +1,5 @@
 from django import forms
+from .models import UserProfile
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -16,3 +17,24 @@ class UserForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class UpdateUser(forms.ModelForm):
+    email = forms.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ['username', 'email']
+
+    def save(self, commit=True):
+        user = super(UpdateUser, self).save(commit=False)
+        user.email = self.cleaned_data['email']
+        if commit:
+            user.save()
+        return user
+
+
+class UpdateProfile(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['image']
