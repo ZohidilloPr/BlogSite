@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import PostsModel
-from django.views.generic import ListView, CreateView
+from django.contrib.auth.models import User
+from django.contrib.auth.mixins import UserPassesTestMixin
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 # Create your views here.
 
 
@@ -8,6 +10,16 @@ class HomeListView(ListView):
     model = PostsModel
     template_name = 'main/Home.html'
     ordering = '-pub_date'
+
+
+class UserPostsListView(ListView):
+    model = PostsModel
+    template_name = 'main/userPosts.html'
+    ordering = '-pub_date'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return PostsModel.objects.filter(author=user).order_by('-pub_date')
 
 
 def Article_function(request, id):
@@ -27,3 +39,40 @@ class BlogsCreateView(CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+
+class BlogsUpdateView(UpdateView, UserPassesTestMixin):
+    model = PostsModel
+    template_name = 'main/Update.html'
+    fields = ['title', 'body']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def test_function(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class BlogsDeleteView(DeleteView, UserPassesTestMixin):
+    model = PostsModel
+    template_name = 'main/Delete.html'
+    success_url = '/'
+
+    def test_function(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        return False
+
+
+class OneUserPostsListView(ListView):
+    posts = PostsModel
+    template_name = 'main/onlyOneUserPosts.html'
+    ordering = '-pub_date'
+
+    def get_queryset(self):
+        return PostsModel.objects.filter(author=self.request.user).reverse()

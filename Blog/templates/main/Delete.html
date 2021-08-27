@@ -1,0 +1,22 @@
+{% extends 'main/Index.html' %}
+{% load bootstrap5 %}
+{% block title %}
+  Delete
+{% endblock title %}
+
+{% block content %}
+
+<div class="main">
+  <div class="container">
+    <form action="" method="post">
+      {% csrf_token %}
+      <h1>Welcome Delete Section</h1>
+      <h3>Are You sure Delete <b class="fs-2">"{{ object.title }}"</b></h3>
+      <small><mark class="bg-warning">WARNING!</mark> You can't return this Item</small><br><br>
+      <button type="submit" name="button" class="btn btn-danger">Yes I'm sure</button>
+      <a href="{% url 'Blog:UserPosts' %}" class="ms-3">Cancel</a>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
