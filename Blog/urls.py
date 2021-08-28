@@ -7,6 +7,7 @@ from .views import (
     UserPostsListView,
     BlogsUpdateView,
     BlogsDeleteView,
+    SearchResultsView,
 )
 
 
@@ -19,6 +20,7 @@ urlpatterns = [
     path('update/<pk>/', BlogsUpdateView.as_view(), name='Update'),
     path('delete/<pk>/', BlogsDeleteView.as_view(), name='Delete'),
     path('userposts', OneUserPostsListView.as_view(), name='UserPosts'),
+    path('results/', SearchResultsView.as_view(), name='Search'),
     path('posts=<username>', UserPostsListView.as_view(), name='Posts'),
     path('post/<id>/', Article_function, name='Article'),
 ]

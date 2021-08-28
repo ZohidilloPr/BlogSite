@@ -31,15 +31,15 @@
       <div class="box-element p-3 mt-4">
         <table class="table border-primary">
           <tr>
-            <td>Author</td>
+            <td><i class="fas fa-user-edit"></i> Author</td>
             <td><a href="{% url 'Blog:Posts' posts.author.username %}" class="text-dark">{{ posts.author | upper }}</a></td>
           </tr>
           <tr>
-            <td>Title</td>
+            <td><i class="fas fa-blog"></i> Title</td>
             <td>{{ posts.title | upper }}</td>
           </tr>
           <tr>
-            <td>Published_Date</td>
+            <td><i class="fas fa-calendar-alt"></i> Published_Date</td>
             <td>{{ posts.pub_date }}</td>
           </tr>
         </table>

@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- fontawesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
@@ -27,19 +29,19 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'Users:Home' %}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'Users:Home' %}"><i class="fas fa-home"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'Blog:UserPosts' %}">Posts</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'Blog:UserPosts' %}"><i class="fas fa-blog"></i> Posts</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'Blog:Add' %}">Add Post</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'Blog:Add' %}"><i class="fas fa-plus-circle"></i> Add Post</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'Users:Settings' %}">Settings</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'Users:Settings' %}"><i class="fas fa-sliders-h"></i> Settings</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'Users:SignOut' %}">SignOut</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'Users:SignOut' %}"><i class="fas fa-sign-out-alt"></i> SignOut</a>
             </li>
           </ul>
         </div>

@@ -3,6 +3,8 @@ from .models import PostsModel
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.db.models import Q
+
 # Create your views here.
 
 
@@ -10,12 +12,26 @@ class HomeListView(ListView):
     model = PostsModel
     template_name = 'main/Home.html'
     ordering = '-pub_date'
+    paginate_by = 3
+
+
+class SearchResultsView(ListView):
+    model = PostsModel
+    template_name = 'main/search.html'
+    ordering = '-pub_date'
+    paginate_by = 3
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        object_list = PostsModel.objects.filter(Q(title__icontains=query))
+        return object_list
 
 
 class UserPostsListView(ListView):
     model = PostsModel
     template_name = 'main/userPosts.html'
     ordering = '-pub_date'
+    paginate_by = 2
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.kwargs.get('username'))
@@ -73,6 +89,7 @@ class OneUserPostsListView(ListView):
     posts = PostsModel
     template_name = 'main/onlyOneUserPosts.html'
     ordering = '-pub_date'
+    paginate_by = 2
 
     def get_queryset(self):
         return PostsModel.objects.filter(author=self.request.user).reverse()

@@ -6,7 +6,7 @@ Settings
 
 {% block content %}
 <div class="button">
-  <a href="{% url 'Blog:Home' %}" class="btn btn-outline-secondary">Back to Home</a>
+  <a href="{% url 'Blog:Home' %}" class="btn btn-outline-secondary"><i class="fas fa-hand-point-left"></i> Back to Home</a>
 </div>
 <div class="row my-3">
   <div class="col-md-3"></div>
@@ -23,11 +23,11 @@ Settings
               <div class="card-body">
                 <table class="table mt-4 table-hover">
                     <tr>
-                        <td>USERNAME</td>
-                        <td>{{ user.username }}</td>
+                        <td><i class="fas fa-user-tie"></i> USERNAME</td>
+                        <td>{{ user.username | upper }}</td>
                     </tr>
                     <tr>
-                        <td>EMAIL</td>
+                        <td><i class="fas fa-at"></i> EMAIL</td>
                         <td>{{ user.email }}</td>
                     </tr>
                 </table>

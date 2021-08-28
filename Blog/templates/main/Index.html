@@ -9,6 +9,8 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- fontawesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
@@ -22,11 +24,11 @@
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url 'Blog:Home' %}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url 'Blog:Home' %}"><i class="fas fa-home"></i>Home</a>
           </li>
         </ul>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 me-2">
-          <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 me-2" action="{% url 'Blog:Search' %}" method="get">
+          <input type="search" name="q" class="form-control form-control-dark" placeholder="Search..." aria-label="Search" value="">
         </form>
         {% if user.is_authenticated %}
           <!-- <div class="dropdown text-end">
@@ -41,17 +43,17 @@
               <li><a class="dropdown-item" href="{% url 'Users:SignOut' %}">Sign out</a></li>
             </ul>
           </div> -->
-          <a href="{% url 'Users:Home' %}"><b class="fs-5 ">USER</b>PROFILE</a>
+          <a href="{% url 'Users:Home' %}"><i class="fas fa-user-circle fs-4 text-dark"></i></a>
         {% else %}
           <div class="text-end">
-            <a href="{% url 'Users:SignIn' %}" class="btn btn-outline-success me-2">SignIn</a>
+            <a href="{% url 'Users:SignIn' %}" class="btn btn-outline-success me-2"><i class="fas fa-sign-in-alt"></i>
+                SignIn</a>
             <a href="{% url 'Users:SignUp' %}" class="btn btn-warning">SignUp</a>
           </div>
         {% endif %}
       </div>
     </div>
   </nav>
-
 
   <div class="main mx-5">
       {% block content %}

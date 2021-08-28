@@ -9,3 +9,9 @@ a {
   top: 10px;
   left: 10px;
 }
+#pagination{
+    position: -webkit-sticky; /*  safari uchun */
+    position: sticky;
+    bottom: 1%;
+    left: 50%;
+}
